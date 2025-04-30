@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="box">
+  <div class="inner">
+    <div class="innerbox">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="submit" value="Sign in" onclick="validateAndRedirect()">
+      <div class="link">
+        <a href="#">Forgot Password</a>
+        <a href="#">Sign up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function validateAndRedirect() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username === "" || password === "") {
+      alert("Please enter both username and password.");
+    } else {
+      window.location.href = "one.html"; // Redirect if input is valid
+    }
+  }
+</script>
+</body>
+</html>
+

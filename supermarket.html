@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Super Market</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        /* Green Header Section */
+        .hero-section {
+            background-color: #007a33;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            max-width: 50%;
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: white;
+            color: #007a33;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-image img {
+            width: 280px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        /* Category Section */
+        .category-section {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .category-section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: black;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .category-container {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .category-item {
+            text-align: center;
+            min-width: 120px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .category-item img {
+            width: 120px;
+            height: 100px;
+            display: block;
+            margin: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item p {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .category-item:hover p {
+            color: #007a33;
+        }
+
+        .category-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Dotted Pagination */
+        .pagination-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: lightgray;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #007a33;
+        }
+
+        /* Featured Products Section */
+         /* Featured Products Section */
+        .featured-section {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .featured-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .main-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .left-box {
+            flex: 1;
+            max-width:400px;
+            height:320px;
+            background-color: #d1c800;
+            border-radius: 5px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left-box img {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .right-box {
+            flex: 1;
+            max-width: 800px;
+            max-height:200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .fruit-card,
+        .juice-card {
+            flex: 1;
+            border-radius: 15px;
+            padding: 10px;
+            height:50vh;
+            margin-bottom: 20px;
+        }
+
+        .fruit-card {
+            background-color: #ff8887;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .fruit-card .button {
+            background-color: black;
+            color: white;
+            padding: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: -5px;
+        }
+
+        .fruit-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .juice-card {
+            background-color: #ffa45c;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right:150px;
+        }
+
+        .juice-card img {
+            height: 120px;
+            width:200px;;
+        }
+
+
+        /* Products Section */
+        .products-section {
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .products-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1.5px solid #c7e6c7;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 50%;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 8px 0 4px;
+        }
+
+        .product-card p {
+            margin: 0;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .product-card .price {
+            font-size: 16px;
+            margin: 5px 0 10px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .product-card button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .product-card button:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                max-width: 100%;
+            }
+            .hero-image img {
+                width: 80%;
+                margin: 20px 0;
+            }
+            
+            .main-grid {
+                flex-direction: column;
+            }
+
+            .juice-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .juice-card img {
+                margin-top: 10px;
+            }
+
+            .fruit-card,
+            .juice-card {
+                margin-bottom: 10px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Green Header Section -->
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>MINI SUPER MARKET</h1>
+            <br>
+            <p style="font-size: 16px; font-weight: bold; margin-top: -10px;">Your One-Stop Destination for Fresh and Quality Groceries!</p>
+            <p>Explore a wide range of fresh produce, quality groceries, and daily essentials, all in one place!</p>
+
+            <a href="#" class="btn">LEARN MORE</a>
+        </div>
+        <div class="hero-image">
+            <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/one.jpeg" alt="Healthy Grocery">
+        </div>
+    </div>
+
+    <!-- Category Section -->
+    <div class="category-section">
+        <h2>CATEGORY</h2>
+        <div class="category-container" id="categoryContainer">
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/seven.jpeg" alt="Bakery">
+                <p>BAKERY</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eight.jpeg" alt="Diary">
+                <p>DAIRY</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/three.jpeg" alt="Drinks">
+                <p>DRINKS</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/four.jpeg" alt="Fresh Nuts">
+                <p>FRESH NUTS</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/five.jpeg" alt="Fresh Fish">
+                <p>FRESH FISH</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/six.jpeg" alt="Meat">
+                <p>MEAT</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/nine.jpeg" alt="Eggs">
+                <p>EGGS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eleven.jpeg" alt="Grains">
+                <p>GRAINS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/twelve.jpeg" alt="Perfumes">
+                <p>PERFUMES</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/thirteen.jpeg" alt="Perfumes">
+                <p>SOAPS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/fourteen.jpeg" alt="Perfumes">
+                <p>COOKIES</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/sixteen.jpeg" alt="Perfumes">
+                <p>PICKELS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/seventeen.jpeg" alt="Perfumes">
+                <p>TOYS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eighteen.jpeg" alt="Perfumes">
+                <p>UTENSILS</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/fifteen.jpeg" alt="choco">
+                <p>CHOCLATES</p>
+            </div>
+        </div>
+        
+        <!-- Dotted Navigation -->
+        <div class="pagination-dots">
+            <div class="dot active" onclick="scrollToCategory(0)"></div>
+            <div class="dot" onclick="scrollToCategory(1)"></div>
+            <div class="dot" onclick="scrollToCategory(2)"></div>
+            <div class="dot" onclick="scrollToCategory(3)"></div>
+        </div>
+    </div>
+
+     <!-- Featured Products Section -->
+    <div class="featured-section">
+        <h2>FEATURED PRODUCTS</h2>
+
+        <div class="main-grid">
+
+            <!-- Left Box -->
+            <div class="left-box">
+                <p><strong>FRESH FRUIT JUICE</strong></p>
+                <h3 style="font-size: 30px; margin-top: 2px;">BIG SALE</h3>
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/f3.jpeg" alt="Ice Cream" />
+            </div>
+
+            <!-- Right Column with 2 stacked cards -->
+            <div class="right-box">
+
+                <!-- Top: Fresh Fruit -->
+                <div class="fruit-card">
+                    <div>
+                        <p><strong>DELICIOUS CAKES</strong></p>
+                        <h3>SUPER SALE</h3>
+                        <a href="#" class="button">SHOP NOW</a>
+                    </div>
+                   
+                </div>
+
+                <!-- Bottom: Juice Discount -->
+                <div class="juice-card">
+                    <div>
+                        <p>UP TO</p>
+                        <h3 style="font-size: 24px; font-weight: bold;">20% DISCOUNT</h3>
+                        <p>ENJOY YOUR FRESH DRINK</p>
+                    </div>
+                    <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/f2.jpeg" alt="Juices Splash" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- All Products Section -->
+    <div class="products-section">
+        <h2>ALL PRODUCTS</h2>
+        <div class="products-grid">
+            <!-- Row 1 -->
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s1.jpeg" alt="Cabbage">
+                <h3>Nuts</h3>
+                <p>1kg</p>
+                <p class="price">₹99.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s2.jpeg" alt="Cauliflower">
+                <h3>Chicken</h3>
+                <p>1kg</p>
+                <p class="price">₹239.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s3.jpeg" alt="Red Cabbage">
+                <h3>Santoor</h3>
+                <p>pack of 4</p>
+                <p class="price">₹179.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s4.jpeg" alt="Green Papaya">
+                <h3>Tooth Paste</h3>
+                <p>2 pieces</p>
+                <p class="price">₹129.00</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s5.jpeg" alt="Red Tomato">
+                <h3>Snickers</h3>
+                <p>1 packet</p>
+                <p class="price">₹199.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s6.jpeg" alt="Green Tomato">
+                <h3>Toys</h3>
+                <p>set of 2</p>
+                <p class="price">₹500.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s7.jpeg" alt="Bean">
+                <h3>Chicken Pickle</h3>
+                <p>1kg</p>
+                <p class="price">₹999.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s8.jpeg" alt="Radish">
+                <h3>Cookies</h3>
+                <p>5</p>
+                <p class="price">₹30.00</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s9.jpeg" alt="Broccoli">
+                <h3>Eggs</h3>
+                <p>1 dozen</p>
+                <p class="price">₹72.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s10.jpeg" alt="Carrot">
+                <h3>Perfumes</h3>
+                <p>pack of 3</p>
+                <p class="price">₹349.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s11.jpeg" alt="Onion">
+                <h3>Tooth Brushes</h3>
+                <p>pack of 4</p>
+                <p class="price">₹79.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s12.jpeg" alt="Potato">
+                <h3>Mutton</h3>
+                <p>1kg</p>
+                <p class="price">₹800.00</p>
+                <button>Add to Cart</button>
+            </div>
+            
+            <!-- Row 4 -->
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s13.jpeg" alt="Broccoli">
+                <h3>Cup Cakes</h3>
+                <p>3</p>
+                <p class="price">₹30.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s15.jpeg" alt="Onion">
+                <h3>Parachute Oil</h3>
+                <p>1 bottle</p>
+                <p class="price">₹149.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s14.jpeg" alt="Carrot">
+                <h3>Meera shampoo</h3>
+                <p>1 Bottle</p>
+                <p class="price">₹149.00</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/s16.jpeg" alt="Potato">
+                <h3>Surf Excel Liquid</h3>
+                <p>1 bottle</p>
+                <p class="price">₹99.00</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToCategory(index) {
+            const container = document.getElementById('categoryContainer');
+            const categoryWidth = document.querySelector('.category-item').offsetWidth + 20;
+            container.scrollLeft = index * categoryWidth * 3; // Scroll 3 items per dot
+
+            document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+            document.querySelectorAll('.dot')[index].classList.add('active');
+        }
+    </script>
+</body>
+</html>

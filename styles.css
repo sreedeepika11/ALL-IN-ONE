@@ -1,0 +1,127 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Top Header */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: white;
+    border-bottom: 2px solid #ddd;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+.logo-box {
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+/* Cart Info */
+.cart-info {
+    font-size: 14px;
+    color: black;
+}
+
+.cart {
+    color: red;
+    font-weight: bold;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+}
+
+nav ul li.active a,
+nav ul li a:hover {
+    background: red;
+}
+
+/* Search Bar */
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Categories Section */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Categories per row */
+    gap: 20px;
+    padding: 30px;
+    background: #f8f8f8;
+    justify-items: center;
+}
+
+/* Category Box */
+.category {
+    background: white;
+    width: 250px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.8s ease-in-out; /* Hover effect over 0.8s */
+}
+
+.category:hover {
+    transform: translateY(-8px); /* Moves up slightly */
+}
+
+/* Icon Styling */
+.icon {
+    font-size: 50px;
+    display: block;
+    margin-bottom: 10px;
+    transition: transform 1s ease-in-out; /* Smooth icon hover effect */
+}
+
+.category:hover .icon {
+    transform: rotate(15deg) scale(1.1); /* Slight rotation & scale effect */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .categories {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .categories {
+        grid-template-columns: repeat(1, 1fr); /* 1 per row on small screens */
+    }
+}
+

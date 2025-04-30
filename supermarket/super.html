@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Super Market</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        /* Green Header Section */
+        .hero-section {
+            background-color: #007a33;
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            max-width: 50%;
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: white;
+            color: #007a33;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-image img {
+            width: 280px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        /* Category Section */
+        .category-section {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-section h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: black;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .category-container {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .category-item {
+            text-align: center;
+            min-width: 120px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .category-item img {
+            width: 120px;
+            height: 100px;
+            display: block;
+            margin: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item p {
+            margin-top: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .category-item:hover p {
+            color: #007a33;
+        }
+
+        .category-item:hover img {
+            transform: scale(1.1);
+        }
+
+       
+        /* Featured Products Section */
+        .featured-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .featured-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .featured-item {
+            padding: 20px;
+            border-radius: 10px;
+            color: black;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .featured-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .sale1 {
+            background-color: #f4c14d;
+            flex: 1;
+        }
+
+        .sale2 {
+            background-color: #f78b9e;
+            flex: 2;
+        }
+
+        .sale3 {
+            background-color: #f49d47;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sale3 .shop-now {
+            background-color: black;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Dotted Pagination */
+        .pagination-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: lightgray;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #007a33;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                max-width: 100%;
+            }
+            .hero-image img {
+                width: 80%;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Green Header Section -->
+    <div class="hero-section">
+        <div class="hero-text">
+            <h1>MINI SUPER MARKET</h1>
+            <br>
+            <p style="font-size: 16px; font-weight: bold; margin-top: -10px;">Your One-Stop Destination for Fresh and Quality Groceries!</p>
+            <p>Explore a wide range of fresh produce, quality groceries, and daily essentials, all in one place!</p>
+
+            <a href="#" class="btn">LEARN MORE</a>
+        </div>
+        <div class="hero-image">
+            <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/one.jpeg" alt="Healthy Grocery">
+        </div>
+    </div>
+
+    <!-- Category Section -->
+    <div class="category-section">
+        <h2>CATEGORY</h2>
+        <div class="category-container" id="categoryContainer">
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/seven.jpeg" alt="Bakery">
+                <p>BAKERY</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eight.jpeg" alt="Diary">
+                <p>DAIRY</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/three.jpeg" alt="Drinks">
+                <p>DRINKS</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/four.jpeg" alt="Fresh Nuts">
+                <p>FRESH NUTS</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/five.jpeg" alt="Fresh Fish">
+                <p>FRESH FISH</p>
+            </div>
+            <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/six.jpeg" alt="Meat">
+                <p>MEAT</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/nine.jpeg" alt="Eggs">
+                <p>EGGS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eleven.jpeg" alt="Grains">
+                <p>GRAINS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/twelve.jpeg" alt="Perfumes">
+                <p>PERFUMES</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/thirteen.jpeg" alt="Perfumes">
+                <p>SOAPS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/fourteen.jpeg" alt="Perfumes">
+                <p>COOKIES</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/sixteen.jpeg" alt="Perfumes">
+                <p>PICKELS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/seventeen.jpeg" alt="Perfumes">
+                <p>TOYS</p>
+            </div>
+             <div class="category-item">
+                <img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/eighteen.jpeg" alt="Perfumes">
+                <p>UTENSILS</p>
+            </div>
+            <div class="category-item">
+            	<img src="/home/rguktrkvalley/Desktop/ALL IN ONE/supermarket/fifteen.jpeg" alt="choco">
+            	<p>CHOCLATES</p>
+            </div>
+            
+            
+            
+        </div>
+        
+        
+        
+        <!-- Dotted Navigation -->
+        <div class="pagination-dots">
+            <div class="dot active" onclick="scrollToCategory(0)"></div>
+            <div class="dot" onclick="scrollToCategory(1)"></div>
+            <div class="dot" onclick="scrollToCategory(2)"></div>
+            <div class="dot" onclick="scrollToCategory(3)"></div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToCategory(index) {
+            const container = document.getElementById('categoryContainer');
+            const categoryWidth = document.querySelector('.category-item').offsetWidth + 20;
+            container.scrollLeft = index * categoryWidth * 3; // Scroll 3 items per dot
+
+            document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+            document.querySelectorAll('.dot')[index].classList.add('active');
+        }
+    </script>
+    
+    
+   
+</html>
+

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All in One Book Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; text-align: center; }
+
+        .header {
+            margin-top: 30px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Slider Container */
+        .slider-container {
+            width: auto;
+            max-width: 400px;
+            margin: 30px auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .featured-books {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .featured-books h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .swiper-container {
+            position: relative;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .swiper-slide {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide img {
+            width: 100px;
+            height: 150px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .book-title { font-size: 16px; color: #333; }
+        .book-price { font-size: 14px; color: #666; }
+        .old-price { text-decoration: line-through; color: #999; }
+        .add-to-cart {
+            background: green;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: rgba(0, 0, 0, 0.3);
+        }
+        
+        
+        
+        <!-- stationery -->
+        
+        
+        
+        <style>
+    .slidercontainer {
+        position: relative;
+        max-width: 90%;
+        margin: auto;
+        overflow: hidden;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .sliderr {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+    .slidee {
+        min-width: 250px;
+        margin: 10px;
+        text-align: center;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .slidee img {
+        max-width: 100%;
+        height: auto;
+    }
+    .product-name {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    .product-subtext {
+        font-size: 14px;
+        color: grey;
+    }
+    .product-price {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+    .addto-cart {
+        background: yellow;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .addto-cart::before {
+        content: '\1F6D2'; /* Shopping cart Unicode */
+        margin-right: 5px;
+    }
+    .navigation-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        background: lightgray;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .dot.active {
+        background: black;
+    }
+</style>
+  
+</head>
+<body>
+    <div class="header">Welcome to All in One Book Store</div>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide"><img src="/home/rguktrkvalley/Downloads/book1.jpeg" alt="Book 1"></div>
+            <div class="slide"><img src="/home/rguktrkvalley/Downloads/book2.jpeg" alt="Book 2"></div>
+            <div class="slide"><img src="/home/rguktrkvalley/Downloads/book3.jpeg" alt="Book 3"></div>
+        </div>
+    </div>
+
+    <div class="featured-books">
+        <h2>Featured Books</h2>
+        <div class="swiper-container featured-slider">
+            <div class="swiper-wrapper">
+                
+                <!-- Adding 10 featured books -->
+               <script>
+    const books = [
+        { title:  "Classmate NoteBooks", price: 179.00, oldPrice: 199.00, image: "/home/rguktrkvalley/Downloads/b2.jpeg" },
+        { title: "Sprial Notes", price: 150.00, oldPrice: 170.00, image: "/home/rguktrkvalley/Downloads/b3.jpeg" },
+        { title: "BUSY TOWN", price: 99.00, oldPrice: 119.00 , image: "/home/rguktrkvalley/Downloads/b4.jpeg" },
+        { title: "Animal Stories", price: 199.00, oldPrice: 230.00, image: "/home/rguktrkvalley/Downloads/b5.jpeg" },
+        { title: "Sprial Set of 2", price: 230.00, oldPrice: 299.00, image: "/home/rguktrkvalley/Downloads/b6.jpeg" },
+        { title: "Arts & Craft", price: 139.00, oldPrice: 179.00, image: "/home/rguktrkvalley/Downloads/b7.jpeg" },
+        { title: "Classmate Set Of 5", price: 450.00, oldPrice: 499.00, image: "/home/rguktrkvalley/Downloads/b8.jpeg" },
+        { title: "Rough Notes", price: 59.00, oldPrice: 100.00, image: "/home/rguktrkvalley/Downloads/b10.jpeg" },
+        { title: "Diary", price: 269.00, oldPrice: 299.00, image: "/home/rguktrkvalley/Downloads/b11.jpeg" },
+        { title: "Class Note Books", price: 119.00, oldPrice: 159.00, image: "/home/rguktrkvalley/Downloads/b9.jpeg" }
+    ];
+
+    books.forEach(book => {
+        document.write(`
+            <div class="swiper-slide">
+                <img src="${book.image}" alt="${book.title}">
+                <div class="book-title">${book.title}</div>
+                <div class="book-price">₹${(book.price).toFixed(2)} 
+                    <span class="old-price">₹${(book.oldPrice).toFixed(2)}</span>
+                </div>
+                <button class="add-to-cart">Add To Cart</button>
+            </div>
+        `);
+    });
+</script>
+
+
+                
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+    
+     let index = 0;
+        function moveSlide(step) {
+            const slides = document.querySelector('.slider');
+            const totalSlides = document.querySelectorAll('.slide').length;
+            index = (index + step + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        // Auto-slide every 3 seconds
+        setInterval(() => moveSlide(1), 3000);
+        
+        
+        var swiper = new Swiper(".featured-slider", {
+            spaceBetween: 10,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                450: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+            },
+        });
+    </script>
+    
+    <!--stationery -->
+    
+    <div class="featured-books">
+    <h2>Stationery Set</h2>
+     <div class="slidercontainer">
+        <div class="sliderr" id="sliderr">
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s1.jpeg" alt="Sharpener">
+                <p class="product-name">Apsara Sharpener 30 Pc</p>
+                <p class="product-subtext">30 Pieces</p>
+                <p class="product-price">₹99</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s2.jpeg" alt="Eraser">
+                <p class="product-name">DOMS Eraser 100 Pc</p>
+                <p class="product-subtext">100 Pieces</p>
+                <p class="product-price">₹159</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s3.jpeg" alt="Calculator">
+                <p class="product-name">Casio Calculator</p>
+                <p class="product-subtext">Basic Model</p>
+                <p class="product-price">₹500</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s4.jpeg" alt="Pen">
+                <p class="product-name">Parker Pen</p>
+                <p class="product-subtext">Premium Ink Pen</p>
+                <p class="product-price">₹800</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s5.jpeg" alt="Highlighter">
+                <p class="product-name">Faber Castell Highlighters</p>
+                <p class="product-subtext">20 Pieces</p>
+                <p class="product-price">₹30</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s6.jpeg" alt="Notebook">
+                <p class="product-name">Stylish Box</p>
+                <p class="product-subtext">Set of 6</p>
+                <p class="product-price">₹299</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s7.jpeg" alt="Notebook">
+                <p class="product-name">Unicorn Pouch Set</p>
+                <p class="product-subtext">Pouch Model</p>
+                <p class="product-price">₹299</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s8.jpeg" alt="Notebook">
+                <p class="product-name">Fun Blast Scale Ruler</p>
+                <p class="product-subtext">3 Pieces</p>
+                <p class="product-price">₹59</p>
+                <button class="addto-cart">Add</button>
+            </div>
+            <div class="slidee">
+                <img src="/home/rguktrkvalley/Downloads/s9.jpeg" alt="Notebook">
+                <p class="product-name">Stationery Set</p>
+                <p class="product-subtext">All set</p>
+                <p class="product-price">₹99</p>
+                <button class="addto-cart">Add</button>
+            </div>
+        </div>
+        <div class="navigation-dots" id="dots"></div>
+    </div>
+   <script>
+    let index = 0;
+    const slider = document.getElementById("sliderr");
+    const slides = document.querySelectorAll(".slidee");
+    const dotsContainer = document.getElementById("dots");
+
+    function createDots() {
+        dotsContainer.innerHTML = "";
+        slides.forEach((_, i) => {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (i === 0) dot.classList.add("active");
+            dot.onclick = () => moveSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    function moveSlide(newIndex) {
+        index = newIndex;
+        const slideWidth = slides[0].offsetWidth + 20;
+        slider.style.transform = `translateX(-${index * slideWidth}px)`;
+        updateDots();
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === index);
+        });
+    }
+
+    createDots();
+</script>
+
+</body>
+</html>
+
+

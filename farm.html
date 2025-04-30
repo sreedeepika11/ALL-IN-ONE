@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm 2 Market - Fresh Produce Direct from Farmers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #FFD700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #FFD700;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #4CAF50;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .farmer-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-info h3 {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .product-info p {
+            color: #666;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 15px 0;
+        }
+
+        .rating {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Farmers Section */
+        .farmers {
+            padding: 60px 0;
+            background-color: #f1f8e9;
+        }
+
+        .farmers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .farmer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 30px 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .farmer-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .farmer-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 5px solid #4CAF50;
+        }
+
+        .farmer-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .farmer-card p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .farmer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .farmer-social a {
+            color: #4CAF50;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .farmer-social a:hover {
+            color: #3e8e41;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #bbb;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #4CAF50;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 20px;
+            }
+
+            nav ul li {
+                margin: 0 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 300px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">FARM<span>2</span>MARKET</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#farmers">Farmers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1>Fresh Produce Direct from Local Farmers</h1>
+                <p>Connecting you with the freshest fruits, vegetables, and more straight from the farm to your table</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Fresh Products</h2>
+                <p>Discover the finest selection of farm-fresh products grown with care by our local farmers</p>
+            </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmers Section -->
+    <section class="farmers" id="farmers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Farmers</h2>
+                <p>The hardworking individuals who bring fresh, quality produce to your table</p>
+            </div>
+            <div class="farmers-grid" id="farmers-grid">
+                <!-- Farmers will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Farm2Market</h3>
+                    <p>We connect consumers directly with local farmers to provide the freshest produce while supporting sustainable agriculture.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#farmers">Farmers</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Farm Road, Agricultural City</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@farm2market.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new products and seasonal offers</p>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Farm2Market. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Organic Apples",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/one.jpeg",
+                farmerImage: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/two.jpeg",
+                description: "Freshly picked organic apples from our orchard",
+                price: "₹120/kg",
+                rating: 4.5,
+                farmerName: "Chandra Sekhar",
+                location: "Kadapa"
+            },
+            {
+                id: 2,
+                name: "Fresh Carrots",
+                image: "https://images.unsplash.com/photo-1447175008436-054170c2e979?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+                farmerImage: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/three.jpeg",
+                description: "Sweet and crunchy organic carrots",
+                price: "₹30/kg",
+                rating: 4.2,
+                farmerName: "Konda Reddy",
+                location: "Pulivendula"
+            },
+            {
+                id: 3,
+                name: "Juicy Tomatoes",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/four.jpeg",
+                farmerImage: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/five.jpeg",
+                description: "Vine-ripened heirloom tomatoes",
+                price: "₹20/kg",
+                rating: 4.8,
+                farmerName: "Sujatha",
+                location: "Rayachoty"
+            },
+            {
+                id: 4,
+                name: "Bananas",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/six.jpeg",
+                farmerImage: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/seven.jpeg",
+                description: "Fresh picked Banana, perfect for health",
+                price: "₹40/dozen",
+                rating: 4.7,
+                farmerName: "Bala Raju",
+                location:"Konampeta"
+            },
+            {
+                id: 5,
+                name: "Leafy Vegatables",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/nine.jpeg",
+                farmerImage: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/eight.jpeg",
+                description: "Fresh Leafes,good for health",
+                price: "₹20/1 set",
+                rating: 4.9,
+                farmerName: "Pullaiah",
+                location: " Chakrayapeta"
+            },
+            {
+                id: 6,
+                name: "Sweet Corn",
+                image:"/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/ten.jpeg",
+                farmerImage:" /home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/eleven.jpeg",
+                description: "Freshly produced corns",
+                price: "₹50/4 corns",
+                rating: 4.3,
+                farmerName: "Nagendra",
+                location: "Vempalli"
+            },
+            {
+                id: 7,
+                name: "Onions",
+                image:"/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/twelve.jpeg",
+                farmerImage:" /home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/thirteen.jpeg",
+                description: "Freshly produced onions",
+                price: "₹60/kg",
+                rating: 4.3,
+                farmerName: "Nagababu",
+                location: "Chittor"
+            },
+            {
+                id: 8,
+                name: "Green Chillies",
+                image:"/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/fourteen.jpeg",
+                farmerImage:" /home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/fifteen.jpeg",
+                description: "Spicy Chilles",
+                price: "₹30/kg",
+                rating: 4.3,
+                farmerName: "Rajedra",
+                location: "Produtoor"
+            },
+            {
+                id: 9,
+                name: "Potatoes",
+                image:"/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/sixteen.jpeg",
+                farmerImage:" /home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/eleven.jpeg",
+                description: "Freshly produced potatoes",
+                price: "₹35/kg",
+                rating: 4.3,
+                farmerName: "Nagendra",
+                location: "Vempalli"
+            }
+        ];
+
+        // Sample farmers data
+        const farmers = [
+            {
+                id: 1,
+                name: "Konda Reddy",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/three.jpeg",
+                farm: "Apple Valley Farm",
+                specialty: "Fruits (Apples, Pears, Berries)",
+                experience: "15 years"
+            },
+            {
+                id: 2,
+                name: "Nagendra",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/eleven.jpeg",
+                farm: "Green Roots Farm",
+                specialty: "Root Vegetables",
+                experience: "8 years"
+            },
+            {
+                id: 3,
+                name: "Padmavathi",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/seventeen.jpeg",
+                farm: "Sunny Acres",
+                specialty: "Tomatoes, Peppers",
+                experience: "12 years"
+            },
+            {
+                id: 4,
+                name: "Rajeshwari",
+                image: "/home/rguktrkvalley/Desktop/ALL IN ONE/farm2market/eighteen.jpeg",
+                farm: "Golden Fields",
+                specialty: "Corn, Wheat",
+                experience: "20 years"
+            }
+        ];
+
+        // Function to display products
+        function displayProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const stars = '★'.repeat(Math.floor(product.rating)) + '☆'.repeat(5 - Math.floor(product.rating));
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <img src="${product.farmerImage}" alt="${product.farmerName}" class="farmer-image">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p><small>From: ${product.farmerName}, ${product.location}</small></p>
+                        <div class="price">${product.price}</div>
+                        <div class="rating">${stars}</div>
+                        <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+
+            // Add event listeners to add-to-cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const product = products.find(p => p.id == productId);
+                    alert(`Added ${product.name} to your cart!`);
+                });
+            });
+        }
+
+        // Function to display farmers
+        function displayFarmers() {
+            const farmersGrid = document.getElementById('farmers-grid');
+            farmersGrid.innerHTML = '';
+
+            farmers.forEach(farmer => {
+                const farmerCard = document.createElement('div');
+                farmerCard.className = 'farmer-card';
+                farmerCard.innerHTML = `
+                    <img src="${farmer.image}" alt="${farmer.name}">
+                    <h3>${farmer.name}</h3>
+                    <p><strong>Farm:</strong> ${farmer.farm}</p>
+                    <p><strong>Specialty:</strong> ${farmer.specialty}</p>
+                    <p><strong>Experience:</strong> ${farmer.experience}</p>
+                    <div class="farmer-social">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                `;
+                farmersGrid.appendChild(farmerCard);
+            });
+        }
+
+        // Newsletter form submission
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! We'll keep you updated with our freshest offers.`);
+            this.reset();
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts();
+            displayFarmers();
+        });
+    </script>
+</body>
+</html>
