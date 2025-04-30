@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarees Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .saree-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .saree-card {
+            width: 220px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            background: #fff;
+            padding-bottom: 10px;
+        }
+        .saree-card:hover {
+            transform: scale(1.05);
+        }
+        .saree-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 50%;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wishlist::before {
+            content: '\2661'; /* Unicode for empty heart */
+            color: black;
+        }
+        .wishlist.red::before {
+            content: '\2665'; /* Unicode for filled heart */
+            color: red;
+        }
+        .details {
+            padding: 10px;
+            text-align: left;
+        }
+        .price {
+            color: red;
+            font-weight: bold;
+        }
+        .rating {
+            color: orange;
+        }
+        .add-to-bag {
+            display: none;
+            width: 100%;
+            background: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .add-to-bag:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sarees Collection</h2>
+    <div class="saree-container">
+        <script>
+            const sarees = [
+                { img1: "/home/rgukt123/Documents/wtproject1/s11.jpg", img2: "/home/rgukt123/Documents/wtproject1/s12.jpg", name: "Green Silk Saree", rating: "★★★★★ (113)", price: "Rs. 1,199.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s21.jpg", img2: "/home/rgukt123/Documents/wtproject1/s22.jpg", name: "Purple Banarasi Saree", rating: "★★★★☆ (91)", price: "Rs. 1,199.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s31.jpg", img2: "/home/rgukt123/Documents/wtproject1/s32.jpg", name: "Red Kanjivaram Saree", rating: "★★★★★ (150)", price: "Rs. 1,499.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s41.jpg", img2: "/home/rgukt123/Documents/wtproject1/s42.jpg", name: "Pink Chiffon Saree", rating: "★★★★☆ (89)", price: "Rs. 1,099.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s51.jpg", img2: "/home/rgukt123/Documents/wtproject1/s52.jpg", name: "Blue Cotton Saree", rating: "★★★★★ (102)", price: "Rs. 999.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s61.webp", img2: "/home/rgukt123/Documents/wtproject1/s62.webp", name: "Yellow Handloom Saree", rating: "★★★★☆ (97)", price: "Rs. 1,399.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s81.jpg", img2: "/home/rgukt123/Documents/wtproject1/s82.jpg", name: "Black Designer Saree", rating: "★★★★★ (120)", price: "Rs. 1,599.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s71.webp", img2: "/home/rgukt123/Documents/wtproject1/s72.webp", name: "Orange Silk Saree", rating: "★★★★☆ (110)", price: "Rs. 1,299.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/s91.jpg", img2: "/home/rgukt123/Documents/wtproject1/s92.jpg", name: "Grey Linen Saree", rating: "★★★★★ (95)", price: "Rs. 1,049.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/10.jpg", img2: " /home/rgukt123/Documents/wtproject1/10o.jpg", name: "Pink Floral Saree", rating: "★★★★☆ (99)", price: "Rs. 1,299.00" }
+            ]; 
+            
+            sarees.forEach((saree) => {
+                document.write(`
+                    <div class="saree-card" onmouseenter="changeImage(this, '${saree.img2}')" onmouseleave="resetImage(this, '${saree.img1}')">
+                        <span class="wishlist" onclick="toggleWishlist(this)"></span>
+                        <img src="${saree.img1}" alt="${saree.name}">
+                        <div class="details">
+                            <p>${saree.name}</p>
+                            <p class="rating">${saree.rating}</p>
+                            <p class="price">${saree.price}</p>
+                            <button class="add-to-bag">Add to Bag</button>
+                        </div>
+                    </div>
+                `);
+            });
+        </script>
+    </div>
+    
+    <script>
+        function toggleWishlist(heart) {
+            heart.classList.toggle("red");
+        }
+
+        function changeImage(card, imgSrc) {
+            let imgElement = card.querySelector("img");
+            imgElement.src = imgSrc;
+
+            // Show the Add to Bag button when hovered
+            let addToBagBtn = card.querySelector(".add-to-bag");
+            addToBagBtn.style.display = "block";
+        }
+
+        function resetImage(card, imgSrc) {
+            let imgElement = card.querySelector("img");
+            imgElement.src = imgSrc;
+
+            // Hide the Add to Bag button when not hovered
+            let addToBagBtn = card.querySelector(".add-to-bag");
+            addToBagBtn.style.display = "none";
+        }
+    </script>
+</body>
+</html>
+

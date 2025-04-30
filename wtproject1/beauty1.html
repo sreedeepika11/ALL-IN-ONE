@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Beauty & Cosmetics</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      overflow-x: hidden;
+    }
+    .beauty-categories {
+      background-color: #000;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .beauty-categories ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 40px;
+    }
+    .beauty-categories li {
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s, border-bottom 0.3s;
+      position: relative;
+      padding: 5px 10px;
+    }
+    .beauty-categories li:hover {
+      color: #f5c542;
+    }
+    .beauty-categories li::after {
+      content: '';
+      display: block;
+      margin: 5px auto 0;
+      width: 0%;
+      height: 2px;
+      background: #f5c542;
+      transition: width 0.3s;
+    }
+    .beauty-categories li:hover::after {
+      width: 100%;
+    }
+    .container {
+      display: flex;
+      height: calc(100vh - 80px);
+    }
+    .left-frame {
+      width: 25%;
+      background-color: #f4f4f4;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+    }
+    .left-frame h3 {
+      padding: 10px;
+      font-size: 18px;
+      border-bottom: 1px solid #ddd;
+    }
+    .left-frame ul {
+      list-style: none;
+      padding: 10px;
+    }
+    .left-frame li {
+      padding: 10px;
+      margin-bottom: 8px;
+      background-color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .left-frame li:hover {
+      background-color: #ffeaa7;
+      transform: translateX(5px);
+    }
+    .right-frame {
+      width: 75%;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #fff;
+      scroll-behavior: smooth;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #f5c542;
+      padding-bottom: 5px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background: #fff;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .product-card.highlight {
+      animation: skin-glow 1s ease-out;
+      box-shadow: 0 0 15px 5px #ffe6a7;
+    }
+    @keyframes skin-glow {
+      0% { box-shadow: 0 0 5px 0px #ffe6a7; }
+      50% { box-shadow: 0 0 15px 5px #ffe6a7; }
+      100% { box-shadow: 0 0 5px 0px #ffe6a7; }
+    }
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .brand {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .price {
+      color: #000;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .stars {
+      color: #f5a623;
+      font-size: 14px;
+    }
+    .wishlist {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    .wishlist img {
+      width: 100%;
+      height: 100%;
+    }
+    .buy-button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #f5c542;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .buy-button:hover {
+      background-color: #e0b736;
+      transform: scale(1.05);
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <div class="beauty-categories">
+    <ul>
+      <li onmouseover="loadCategory('Sunscreens')">Sunscreens</li>
+      <li onmouseover="loadCategory('Skincare')">Skincare</li>
+      <li onmouseover="loadCategory('Makeup')">Makeup</li>
+      <li onmouseover="loadCategory('Hair')">Hair</li>
+      <li onmouseover="loadCategory('Fragrance')">Fragrance</li>
+      <li onmouseover="loadCategory('Men')">Men</li>
+      <li onmouseover="loadCategory('Appliances')">Appliances</li>
+    </ul>
+  </div>
+
+  <!-- Main Layout -->
+ <!-- <div class="container">
+    <div class="left-frame" id="leftFrame">
+      <video autoplay muted loop>
+        <source src="videos/skincare-intro.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="right-frame" id="rightFrame">
+      <img src="images/skincare-banner.png" alt="Sunscreen Banner" style="width: 100%; border-radius: 10px;" />
+      <div class="section-title">Featured Skincare Products</div>
+      <div class="products" id="productList"></div>
+    </div>
+  </div>   -->
+  
+    <div class="container">
+    <!-- Left Panel -->
+    <div class="left-frame" id="leftFrame">
+      <video autoplay muted loop>
+        <source src="/home/rgukt123/Videos/Screencasts/Screencast from 06-04-25 04:18:04 PM IST.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-frame" id="rightFrame">
+      <img src="/home/rgukt123/Pictures/Screenshots/Screenshot from 2025-04-06 15-50-00.png" alt="Sunscreen Sale Banner" style="width: 100%; height: auto; border-radius: 10px;">
+      <div class="section-title">Featured Skincare</div>
+      <div class="products" id="productList"></div>
+    </div>
+  </div>
+
+  <script>
+    const categories = {
+      "Sunscreens": ["sunscreen1", "sunscreen2", "Sunscreen3", "Sunscreen4", "Sunscreen5", "Sunscreen6", "Sunscreen7", "Sunscreen8"], 
+      "Skincare": ["Cleanser", "Toner", "Moisturizer", "Serums", "Facemasks", "NightCream", "Exfoliants", "Facewaash"],
+      "Makeup": ["Foundation", "Lipstick", "Eyeliner", "Mascara", "Blush", "Primer", "Highlighter", "Concealer"],
+      "Hair": ["Shampoo", "Conditioner", "Hair Oil", "Serum", "Hair Mask", "Dry Shampoo", "Hair Spray", "Heat Protectant"],
+      "Fragrance": ["Perfume", "Body Mist", "Deodorant", "Cologne", "Roll-on", "Scented Lotion", "Aroma Oil", "Travel Spray"],
+      "Men": ["Beard Oil", "Shaving Cream", "Aftershave", "Face Wash", "Hair Wax", "Deodorant", "Moisturizer", "Sunscreen"],
+      "Appliances": ["Hair Dryer", "Straightener", "Curler", "Trimmer", "Epilator", "Massager", "Facial Steamer", "Shaver"]
+    };
+
+    const productImages = {
+      "Sunscreens": [
+            
+        "/home/rgukt123/Documents/wtproject1/b13a7ee530DOTKE00000213_1.avif", "/home/rgukt123/Documents/wtproject1/b16cdd8c3bDOTKE00000357_1.avif", "/home/rgukt123/Documents/wtproject1/b17cdd8c3bDOTKE00000243_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b181cb6d01PLUMX00000578_1.avif", "/home/rgukt123/Documents/wtproject1/b1189e3941LAKME00002083_1.avif", "/home/rgukt123/Documents/wtproject1/b1237ac0f9NYLOTUS000002_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b1459870d9AQUAA00000105_1.avif", "/home/rgukt123/Documents/wtproject1/b1516252793380810405217_1.avif"
+      ],
+      "Skincare": [
+       "/home/rgukt123/Documents/wtproject1/bk12aa71cb8906005273413_1.avif", "/home/rgukt123/Documents/wtproject1/bk27643e1d8906142027580_1.avif", "/home/rgukt123/Documents/wtproject1/bk3bbe1986DOTKE00000199_1a.avif",
+        "/home/rgukt123/Documents/wtproject1/bk40973900CLINI00001179c_1.avif", "/home/rgukt123/Documents/wtproject1/bk505e61308806182557101_01.avif", "/home/rgukt123/Documents/wtproject1/bk616b16b68904317304986_1.avif",
+        "/home/rgukt123/Documents/wtproject1/bk7c75eb2c11111002029_1.avif", "/home/rgukt123/Documents/wtproject1/bk874e7a95SIMPL00000060.avif" 
+      /*    "/home/rgukt123/Documents/wtproject1/b13a7ee530DOTKE00000213_1.avif", "/home/rgukt123/Documents/wtproject1/b16cdd8c3bDOTKE00000357_1.avif", "/home/rgukt123/Documents/wtproject1/b17cdd8c3bDOTKE00000243_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b181cb6d01PLUMX00000578_1.avif", "/home/rgukt123/Documents/wtproject1/b1189e3941LAKME00002083_1.avif", "/home/rgukt123/Documents/wtproject1/b1237ac0f9NYLOTUS000002_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b1459870d9AQUAA00000105_1.avif", "/home/rgukt123/Documents/wtproject1/b1516252793380810405217_1.avif"  */
+      ],
+    
+      "Makeup": [
+       "/home/rgukt123/Documents/wtproject1/b31Untitled.jpeg51r0I+VTySL.jpg", "/home/rgukt123/Documents/wtproject1/b32d4179KAYBE00000782_1.avif", "/home/rgukt123/Documents/wtproject1/b3398c2c71LA_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b346fd8179MAYBE00000375_1.avif", "/home/rgukt123/Documents/wtproject1/b3569b16ccMARSX00000997_1.avif", "/home/rgukt123/Documents/wtproject1/b36c8a50acEARAA00000330_M.avif",
+        "/home/rgukt123/Documents/wtproject1/b37a4bed56LAKME00001570_1.avif", "/home/rgukt123/Documents/wtproject1/b38c77bc34MARSX00001026-new_1.avif"
+      /*  "/home/rgukt123/Documents/wtproject1/b31Untitled.jpeg51r0I+VTySL.jpg", "/home/rgukt123/Documents/wtproject1/b32d4179KAYBE00000782_1.avif", "images/makeup3.png",
+        "images/makeup4.png", "images/makeup5.png", "images/makeup6.png",
+        "images/makeup7.png", "images/makeup8.png" */
+      ],
+       "Hair": [
+       "/home/rgukt123/Documents/wtproject1/b419a28f79LOVEB00000043_1.avif", "/home/rgukt123/Documents/wtproject1/b426c1a17c8901030655852_0.avif", "/home/rgukt123/Documents/wtproject1/b435faa61dNATHA00000007_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b464591cccBBLUN00000126_1a.avif", "/home/rgukt123/Documents/wtproject1/b458aca6d1NYLOPROF00001_1.avif", "/home/rgukt123/Documents/wtproject1/b464591cccBBLUN00000126_1a.avif",
+        "/home/rgukt123/Documents/wtproject1/b47650e4dBARAD00000093_1.avif", "/home/rgukt123/Documents/wtproject1/b4811d4a41850045076832_1.avif"
+       
+      ],
+      "Fragrance": [
+       "/home/rgukt123/Documents/wtproject1/b51fdd18dfPLUMX00000933_1.avif", "/home/rgukt123/Documents/wtproject1/b52ef80894WANDE00000390_1.avif", "/home/rgukt123/Documents/wtproject1/b53a140d394005900011596_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b54a556af0BELAB00000218b_b1.avif", "/home/rgukt123/Documents/wtproject1/b55f4d31bfCARME00000033_1.avif", "/home/rgukt123/Documents/wtproject1/b562c23de9667558349205.avif",
+        "/home/rgukt123/Documents/wtproject1/b57988d4f15703686824636_1.avif", "/home/rgukt123/Documents/wtproject1/b58vanilla_bottle_1.avif"
+        
+      ],
+       "Men": [
+        "/home/rgukt123/Documents/wtproject1/b61a05d9a68904223818614_1.avif", "/home/rgukt123/Documents/wtproject1/b62f4139b28904355919531_1.avif", "/home/rgukt123/Documents/wtproject1/b6379c7e7b4987176106742_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b64301cd7b8906084790955b_1.avif", "/home/rgukt123/Documents/wtproject1/b65e62d1254015001003055_1.avif", "/home/rgukt123/Documents/wtproject1/b61a05d9a68904223818614_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b6700bbd56NEUTR00000060_01.avif", "/home/rgukt123/Documents/wtproject1/b68be605f38904378104761.avif"
+      ],
+      "Appliances": [
+        "/home/rgukt123/Documents/wtproject1/b715e90e85AGARO00000019_1.avif", "/home/rgukt123/Documents/wtproject1/b728e3e497IKONI00000001_1.avif", "/home/rgukt123/Documents/wtproject1/b735e90e85AGARO00000003_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b743bea9baNYPHILIPS0002_1.avif", "/home/rgukt123/Documents/wtproject1/b753224349WINST00000039_1.avif", "/home/rgukt123/Documents/wtproject1/b7846f17314210201163367_1.avif",
+        "/home/rgukt123/Documents/wtproject1/b77755d9048904320016944_1.avif", "/home/rgukt123/Documents/wtproject1/b78e3ce4487452218623695_1.avif"
+      ],
+      // Add image arrays for other categories similarly
+    };
+
+    function toggleHeart(el) {
+      const img = el.querySelector('img');
+      const isFilled = img.getAttribute('data-filled') === 'true';
+      img.src = isFilled ? 'images/heart-outline.png' : 'images/heart-filled.png';
+      img.setAttribute('data-filled', !isFilled);
+    }
+
+    function loadCategory(category) {
+      const left = document.getElementById('leftFrame');
+      const right = document.getElementById('rightFrame');
+      const items = categories[category] || [];
+      const images = productImages[category] || [];
+
+      left.innerHTML = `<h3>${category} Products</h3><ul>${items.map((item, i) =>
+        `<li onmouseover="highlightProduct(${i})">${item}</li>`).join('')}</ul>`;
+
+      const cards = items.map((item, idx) => `
+        <div class="product-card" id="product-${idx}">
+          <div class="wishlist" onclick="toggleHeart(this)">
+            <img src="images/heart-outline.png" data-filled="false" />
+          </div>
+          <img class="product-image" src="${images[idx] || 'https://via.placeholder.com/150'}" alt="${item}" />
+          <div class="brand">${category} Brand ${idx + 1}</div>
+          <div>${item}</div>
+          <div class="stars">★★★★☆ ${(1 + idx)}.${idx}K</div>
+          <div class="price">₹${(499 + idx * 50)}</div>
+          <button class="buy-button">Buy now</button>
+        </div>`).join('');
+
+      right.innerHTML = `
+        <div class="section-title">${category} Products</div>
+        <div class="products" id="productList">${cards}</div>
+      `;
+    }
+
+    function highlightProduct(index) {
+      const allCards = document.querySelectorAll('.product-card');
+      allCards.forEach(card => card.classList.remove('highlight'));
+      const targetCard = document.getElementById(`product-${index}`);
+      if (targetCard) {
+        targetCard.classList.add('highlight');
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // On load, show default skincare
+    window.onload = () => {
+      const productList = document.getElementById('productList');
+      const items = categories['Skincare'];
+      const images = productImages['Skincare'];
+      productList.innerHTML = items.map((item, idx) => `
+        <div class="product-card" id="product-${idx}">
+          <div class="wishlist" onclick="toggleHeart(this)">
+            <img src="images/heart-outline.png" data-filled="false" />
+          </div>
+          <img class="product-image" src="${images[idx]}" alt="${item}" />
+          <div class="brand">Skincare Brand ${idx + 1}</div>
+          <div>${item}</div>
+          <div class="stars">★★★★☆ ${(2 + idx)}.0K</div>
+          <div class="price">₹${299 + idx * 50}</div>
+          <button class="buy-button">Buy now</button>
+        </div>
+      `).join('');
+    };
+  </script>
+
+</body>
+</html>
+
+

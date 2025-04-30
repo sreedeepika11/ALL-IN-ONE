@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurti Sets Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .kurti-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .kurti-card {
+            width: 220px;
+            border: 1px solid #ddd;
+            border-radius: 10px;=
+            overflow: hidden;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            background: #fff;
+            padding-bottom: 10px;
+        }
+        .kurti-card:hover {
+            transform: scale(1.05);
+        }
+        .kurti-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 50%;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wishlist::before {
+            content: '\2661';
+            color: black;
+        }
+        .wishlist.red::before {
+            content: '\2665';
+            color: red;
+        }
+        .details {
+            padding: 10px;
+            text-align: left;
+        }
+        .price {
+            color: red;
+            font-weight: bold;
+        }
+        .rating {
+            color: orange;
+        }
+        .add-to-bag {
+            display: none;
+            width: 100%;
+            background: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .add-to-bag:hover {
+            background: #333;
+        }
+        
+        .size-chart {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+
+    .size-chart input[type="radio"] {
+        display: none;
+    }
+
+    .size-chart label {
+        border: 1px solid #999;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        user-select: none;
+    }
+
+    .size-chart input[type="radio"]:checked + label {
+        border-color: black;
+        color: #fff;
+        background-color: black;
+    }
+
+    .size-chart label:hover {
+        background-color: #f0f0f0;
+    }
+    </style>
+</head>
+<body>
+    <h2>Kurti Sets Collection</h2>
+    <div class="kurti-container">
+        <script>
+            const kurtis = [
+                { img1: "/home/rgukt123/Documents/wtproject1/k1.jpg", img2: "/home/rgukt123/Documents/wtproject1/k1b.jpg", name: "Peach Printed Kurti Set", rating: "★★★★☆ (89)", price: "Rs. 899.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k2.jpg", img2: "/home/rgukt123/Documents/wtproject1/k2b.jpg", name: "Blue Rayon Kurti Set", rating: "★★★★★ (103)", price: "Rs. 1,199.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k3.jpg", img2: "/home/rgukt123/Documents/wtproject1/k3b.jpg", name: "Yellow Embroidered Kurti", rating: "★★★★☆ (77)", price: "Rs. 1,099.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k4.jpg", img2: "/home/rgukt123/Documents/wtproject1/k4b.jpg", name: "Green Cotton Kurti Set", rating: "★★★★★ (120)", price: "Rs. 1,299.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k5.jpg", img2: "/home/rgukt123/Documents/wtproject1/k5b.jpg", name: "Maroon Bandhani Kurti", rating: "★★★★☆ (90)", price: "Rs. 999.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k6.jpg", img2: "/home/rgukt123/Documents/wtproject1/k6b.jpg", name: "Pink Chikankari Kurti", rating: "★★★★★ (108)", price: "Rs. 1,399.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k7.jpg", img2: "/home/rgukt123/Documents/wtproject1/k7b.jpg", name: "White Printed Kurti Set", rating: "★★★★☆ (95)", price: "Rs. 1,049.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k8.jpg", img2: "/home/rgukt123/Documents/wtproject1/k8b.jpg", name: "Teal Cotton Kurti", rating: "★★★★☆ (87)", price: "Rs. 1,099.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k9.jpg", img2: "/home/rgukt123/Documents/wtproject1/k9b.jpg", name: "Black Printed Kurti Set", rating: "★★★★★ (130)", price: "Rs. 1,499.00" },
+                { img1: "/home/rgukt123/Documents/wtproject1/k10.jpg", img2: "/home/rgukt123/Documents/wtproject1/k10b.jpg", name: "Navy Blue Kurti Set", rating: "★★★★☆ (92)", price: "Rs. 1,299.00" }
+            ];
+            
+            kurtis.forEach((kurti) => {
+                document.write(`
+                    <div class="kurti-card" onmouseenter="changeImage(this, '${kurti.img2}')" onmouseleave="resetImage(this, '${kurti.img1}')">
+                        <span class="wishlist" onclick="toggleWishlist(this)"></span>
+                        <img src="${kurti.img1}" alt="${kurti.name}">
+                        <div class="details">
+                            <p>${kurti.name}</p>
+                            <p class="rating">${kurti.rating}</p>
+                            <p class="price">${kurti.price}</p>
+                            <div class="size-chart">
+                            <input type="radio" name="size-${index}" id="s-${index}">
+                            <label for="s-${index}">S</label>
+                            <input type="radio" name="size-${index}" id="m-${index}">
+                            <label for="m-${index}">M</label>
+                            <input type="radio" name="size-${index}" id="l-${index}">
+                            <label for="l-${index}">L</label>
+                            <input type="radio" name="size-${index}" id="xl-${index}">
+                            <label for="xl-${index}">XL</label>
+                            <input type="radio" name="size-${index}" id="xxl-${index}">
+                            <label for="xxl-${index}">2XL</label>
+                        </div>
+                            <button class="add-to-bag">Add to Bag</button>
+                        </div>
+                    </div>
+                `);
+            });
+        </script>
+    </div>
+    
+    <script>
+        function toggleWishlist(heart) {
+            heart.classList.toggle("red");
+        }
+
+        function changeImage(card, imgSrc) {
+            let imgElement = card.querySelector("img");
+            imgElement.src = imgSrc;
+            let addToBagBtn = card.querySelector(".add-to-bag");
+            addToBagBtn.style.display = "block";
+        }
+
+        function resetImage(card, imgSrc) {
+            let imgElement = card.querySelector("img");
+            imgElement.src = imgSrc;
+            let addToBagBtn = card.querySelector(".add-to-bag");
+            addToBagBtn.style.display = "none";
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jewellery World</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffaf5;
+      color: #333;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 60vh;
+      background: url('/home/rgukt123/Pictures/Screenshots/Screenshot from 2025-04-16 21-17-21.png') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-img h1 {
+      font-size: 3rem;
+     
+    /*  background-color: rgba(0, 0, 0, 0.4);
+      padding: 1rem 2rem;
+      border-radius: 10px;  */
+    }
+
+    nav {
+      background: #f5e1c9;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav button {
+      margin: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: #b88a44;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    nav button:hover {
+      background: #a5732f;
+      transform: scale(1.05);
+    }
+
+    #product-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .info h3 {
+      margin: 0.5rem 0;
+    }
+
+    .price {
+      color: #b88a44;
+      font-weight: bold;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem 1rem;
+    }
+
+    .wishlist {
+      font-size: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .wishlist.liked {
+      color: red;
+    }
+
+    .buy-btn {
+      background: #b88a44;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      background: #a5732f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Image Section -->
+  <div class="hero-img">
+    <h1 align='left'>Welcome to Jewellery World</h1>
+  </div>
+
+  <!-- Category Buttons -->
+  <nav>
+    <button onclick="loadProducts('women')">Women</button>
+    <button onclick="loadProducts('men')">Men</button>
+    <button onclick="loadProducts('traditional')">Traditional</button>
+    <button onclick="loadProducts('modern')">Modern</button>
+  </nav>
+
+  <!-- Product Grid Section -->
+  <section id="product-section">
+    <!-- Products appear here on button click -->
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    const productData = {
+      women: [
+        { name: "Gold Necklace", price: "₹15,999", image: "https://via.placeholder.com/300x200?text=Gold+Necklace" },
+        { name: "Diamond Earrings", price: "₹25,000", image: "https://via.placeholder.com/300x200?text=Diamond+Earrings" },
+        { name: "Pearl Bracelet", price: "₹7,999", image: "https://via.placeholder.com/300x200?text=Pearl+Bracelet" },
+        { name: "Choker Set", price: "₹18,000", image: "https://via.placeholder.com/300x200?text=Choker+Set" },
+        { name: "Antique Ring", price: "₹5,500", image: "https://via.placeholder.com/300x200?text=Antique+Ring" },
+        { name: "Jhumka Earrings", price: "₹9,999", image: "https://via.placeholder.com/300x200?text=Jhumka+Earrings" },
+        { name: "Silver Pendant", price: "₹6,200", image: "https://via.placeholder.com/300x200?text=Silver+Pendant" },
+        { name: "Kundan Set", price: "₹13,300", image: "https://via.placeholder.com/300x200?text=Kundan+Set" },
+        { name: "Anklet", price: "₹4,000", image: "https://via.placeholder.com/300x200?text=Anklet" },
+        { name: "Bangles Combo", price: "₹11,500", image: "https://via.placeholder.com/300x200?text=Bangles+Combo" }
+      ],
+      men: [
+        { name: "Gold Chain", price: "₹14,999", image: "https://via.placeholder.com/300x200?text=Gold+Chain" },
+        { name: "Silver Bracelet", price: "₹6,500", image: "https://via.placeholder.com/300x200?text=Silver+Bracelet" },
+        { name: "Titanium Ring", price: "₹4,800", image: "https://via.placeholder.com/300x200?text=Titanium+Ring" },
+        { name: "Studs", price: "₹3,400", image: "https://via.placeholder.com/300x200?text=Studs" },
+        { name: "Pendant", price: "₹5,500", image: "https://via.placeholder.com/300x200?text=Pendant" },
+        { name: "Cufflinks", price: "₹3,800", image: "https://via.placeholder.com/300x200?text=Cufflinks" },
+        { name: "Steel Chain", price: "₹2,900", image: "https://via.placeholder.com/300x200?text=Steel+Chain" },
+        { name: "Beaded Bracelet", price: "₹2,000", image: "https://via.placeholder.com/300x200?text=Beaded+Bracelet" },
+        { name: "Vintage Ring", price: "₹6,200", image: "https://via.placeholder.com/300x200?text=Vintage+Ring" },
+        { name: "Black Stud", price: "₹2,500", image: "https://via.placeholder.com/300x200?text=Black+Stud" }
+      ],
+      traditional: [
+        { name: "Temple Necklace", price: "₹20,000", image: "https://via.placeholder.com/300x200?text=Temple+Necklace" },
+        { name: "Maang Tikka", price: "₹3,500", image: "https://via.placeholder.com/300x200?text=Maang+Tikka" },
+        { name: "Nath Nose Ring", price: "₹2,800", image: "https://via.placeholder.com/300x200?text=Nath+Ring" },
+        { name: "Antique Bangles", price: "₹9,600", image: "https://via.placeholder.com/300x200?text=Antique+Bangles" },
+        { name: "Kada Set", price: "₹7,300", image: "https://via.placeholder.com/300x200?text=Kada+Set" },
+        { name: "Bharatnatyam Set", price: "₹13,000", image: "https://via.placeholder.com/300x200?text=Dance+Set" },
+        { name: "Rani Haar", price: "₹22,500", image: "https://via.placeholder.com/300x200?text=Rani+Haar" },
+        { name: "Toe Rings", price: "₹1,800", image: "https://via.placeholder.com/300x200?text=Toe+Rings" },
+        { name: "Payal", price: "₹4,200", image: "https://via.placeholder.com/300x200?text=Payal" },
+        { name: "Mangalsutra", price: "₹11,000", image: "https://via.placeholder.com/300x200?text=Mangalsutra" }
+      ],
+      modern: [
+        { name: "Geometric Pendant", price: "₹4,800", image: "https://via.placeholder.com/300x200?text=Geometric+Pendant" },
+        { name: "Minimalist Ring", price: "₹3,200", image: "https://via.placeholder.com/300x200?text=Minimal+Ring" },
+        { name: "Statement Earrings", price: "₹6,700", image: "https://via.placeholder.com/300x200?text=Statement+Earrings" },
+        { name: "Charm Bracelet", price: "₹4,400", image: "https://via.placeholder.com/300x200?text=Charm+Bracelet" },
+        { name: "Chain Layered Set", price: "₹7,900", image: "https://via.placeholder.com/300x200?text=Layered+Necklace" },
+        { name: "Crystal Studs", price: "₹3,100", image: "https://via.placeholder.com/300x200?text=Crystal+Studs" },
+        { name: "Fashion Bangle", price: "₹5,300", image: "https://via.placeholder.com/300x200?text=Fashion+Bangle" },
+        { name: "Adjustable Ring", price: "₹2,500", image: "https://via.placeholder.com/300x200?text=Adjustable+Ring" },
+        { name: "Modern Chain", price: "₹6,600", image: "https://via.placeholder.com/300x200?text=Modern+Chain" },
+        { name: "Pearl Drop Set", price: "₹8,900", image: "https://via.placeholder.com/300x200?text=Pearl+Drop+Set" }
+      ]
+    };
+
+    function loadProducts(category) {
+      const section = document.getElementById("product-section");
+      const products = productData[category] || [];
+
+      section.innerHTML = products.map(p => `
+        <div class="card">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="info">
+            <h3>${p.name}</h3>
+            <p class="price">${p.price}</p>
+          </div>
+          <div class="actions">
+            <span class="wishlist" onclick="toggleWishlist(this)">♡</span>
+            <button class="buy-btn" onclick="buyNow('${p.name}')">Buy Now</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleWishlist(icon) {
+      icon.classList.toggle('liked');
+    }
+
+    function buyNow(product) {
+      alert(`You selected to buy: ${product}`);
+    }
+  </script>
+
+</body>
+</html>
+
